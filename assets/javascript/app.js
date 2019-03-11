@@ -21,7 +21,7 @@ var config = {
 
     var trainName = "";
     var destination = "";
-    var firstTrain = 0;
+    var firstTrain; 
     var frequency = 0;
 
     $("#submit-train").on("click", function(event) {
@@ -38,48 +38,47 @@ var config = {
             trainName:trainName,
             destination:destination,
             firstTrain:firstTrain,
-            frequency:frequency
-            //timestamp:firebase.database.ServerValue.TIMESTAMP
+            frequency:frequency,
+            timestamp:firebase.database.ServerValue.TIMESTAMP
         })
+
+    })
 
         database.ref().on("child_added", function(snapshot) {
         
             var info = snapshot.val();
-    
-            console.log(info.trainName);
-            console.log(info.destination);
-            console.log(info.firstTrain);
-            console.log();
 
-            var row = $("<tr>");
-            var newTrainName = $("<td>").text(info.trainName);
-            var newDestination = $("<td>").text(info.destination);
-            var newFirstTrain = $("<td>").text(info.firstTrain);
-            var newFrequency = $("<td>").text(info.frequency);
-            //var newArrival = $("<td>");
-           // newTrainName.text(info.trainName);
-            //newDestination.text(info.destination);
-            //newFirstTrain.text(info.firstTrain);
-            //newFrequency.text(info.frequency);
-            $("#train-table").append(row);
-            $("#train-table").append(newTrainName)
-            $("#train-table").append(newDestination)
-            $("#train-table").append(newFirstTrain)
-            $("#train-table").append(newFrequency)
-           // $("#train-table").append()
+            var firstTime = moment(snapshot.val().firstTrain, "hh:mm").subtract(1, "years");
+            
+            
+            var timeDifference = moment().diff(moment(firstTime), "minutes");
+            var TimeRemainder = timeDifference % snapshot.val().frequency;
+            var minutesAway = snapshot.val().frequency - TimeRemainder;
+            var nextArrival = moment().add(minutesAway, "minutes");
+            nextArrival = moment(nextArrival).format("hh:mm");
+            
+            
+            console.log("train name" + info.trainName);
+            console.log("new dest" + info.destination);
+            console.log("first train" + info.firstTrain);
+            console.log("minutes until" + minutesAway);
+            console.log("next arrival" + nextArrival);
 
-        dataRef.ref().orderByChild("dateAdded").limitToLast(10).on("child_added", function(snapshot) {
-            // Change the HTML to reflect
-            $("#name-display").text(snapshot.val().name);
-            $("#email-display").text(snapshot.val().email);
-            $("#age-display").text(snapshot.val().age);
-            $("#comment-display").text(snapshot.val().comment);
-      });
+            $("#new-row").append("<tr> <td>" + info.trainName + 
+            "</td><td>" + info.destination +
+            "</td><td>" +  info.frequency + 
+            "</td><td>" + nextArrival +
+            "</td><td>" + minutesAway + "</td></tr>");
+
+            //$("#add-train").reset();
+
   
 
-          }, function(errorObject) {
+        }, function(errorObject) {
+           
             console.log("Errors handled: " + errorObject.code);
           });
-      })
+          
+      
 
       
