@@ -33,6 +33,7 @@ var config = {
       firstTrain = $("#first-train").val().trim();
       frequency = $("#frequency").val().trim();
 
+      $("#add-new").find(".input").val("");
       
         database.ref().push({
             trainName:trainName,
@@ -52,10 +53,10 @@ var config = {
             
             
             var timeDifference = moment().diff(moment(firstTime), "minutes");
-            var TimeRemainder = timeDifference % snapshot.val().frequency;
-            var minutesAway = snapshot.val().frequency - TimeRemainder;
+            var timeRemainder = timeDifference % snapshot.val().frequency;
+            var minutesAway = snapshot.val().frequency - timeRemainder;
             var nextArrival = moment().add(minutesAway, "minutes");
-            nextArrival = moment(nextArrival).format("hh:mm");
+            nextArrival = moment(nextArrival).format("HH:mm");
             
             
             console.log("train name" + info.trainName);
@@ -68,9 +69,9 @@ var config = {
             "</td><td>" + info.destination +
             "</td><td>" +  info.frequency + 
             "</td><td>" + nextArrival +
-            "</td><td>" + minutesAway + "</td></tr>");
+            "</td><td>" + minutesAway + " " + "min" +"</td></tr>");
 
-            //$("#add-train").reset();
+            
 
   
 
@@ -78,7 +79,6 @@ var config = {
            
             console.log("Errors handled: " + errorObject.code);
           });
-          
-      
 
+  $("form").find("input[type=text]", "input[type=number").val("");
       

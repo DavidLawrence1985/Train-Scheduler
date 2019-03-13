@@ -1,36 +1,46 @@
+/*
+font-family: 'Audiowide', cursive;
+font-family: 'Julius Sans One', sans-serif;
+font-family: 'Prosto One', cursive;
+*/
 #header {
-    background:#f2f2f2;
+    background: url("../images/train.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
     height: 4rem;
     width: 100%;
     border-radius: .25rem;
     margin-bottom: .5rem;
+
 }
 
-#header h1 {
+#current-schedule h1 {
+    color:black;
     text-align: center;
-    font-size: 2rem;
+    font-size: 1.75rem;
     padding: 1rem;
+    font-family: 'Audiowide', cursive;
 }
 
 #current-schedule {
     background: #eaeaea;
     height: auto;
-    padding: 1rem;
-
-}
-#current-schedule h2 {
-    font-size: 1.5rem;
+    padding: 1rem; 
     text-align: center;
-    margin-bottom: 1rem;
+    
 }
 
 #current-schedule table,
 th,
 td {
     border: 1px solid black;
+    text-align: center;
+    margin: auto;
+    font-family: 'Prosto One', cursive;
 }
 
 #current-schedule table {
+    table-layout: auto;
     border-collapse: collapse;
     width:100%
 }
@@ -40,6 +50,21 @@ td {
     border: 1px solid black;
     height: 1rem;
     padding: .5rem;
+}
+thead {
+    background: #f2f2f2;
+}
+
+
+/*#new-row tr:hover{
+    background: navy;
+    color: #dddddd;
+
+}*/
+
+#new-row tr:nth-child(even){
+    background: #f2f2f2;
+
 }
 
 .input {
@@ -70,6 +95,7 @@ td {
     border-radius: .25rem;
     background-color: #f2f2f2;
     padding: 1rem;
+    font-family: 'Prosto One', cursive;
     
   }
 

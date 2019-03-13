@@ -9,23 +9,25 @@
     <script src="https://www.gstatic.com/firebasejs/5.8.6/firebase.js"></script>
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/reset.css">
+    <link href="https://fonts.googleapis.com/css?family=Audiowide|Julius+Sans+One|Prosto+One" rel="stylesheet">
+    
     <title>Train Scheduler</title>
 </head>
 <body>
     <div id="header">
-        <h1>Train Scheduler</h1>
+        
     </div>
 
     <div id="current-schedule" class="grid">
-        <h2>Schedule</h2>
+        <h1>Train Schedule</h1>
         <table id="train-table">
             <thead>
                 <tr>
                     <th>Name</th>
                     <th>Destination</th>
-                    <th>Frequency</th>
-                    <th>Next Arrival</th>
-                    <th>Minutes Away</th>
+                    <th>Freq.</th>
+                    <th>Next<br>Train</th>
+                    <th>Wait<br>Time</th>
                 </tr>
             </thead>
 
@@ -38,7 +40,7 @@
     <div id="add-train" class="grid">
             <h2>Add Train</h2>
 
-            <form>
+            <form id="add-new">
                 <label for="train-name">Train Name</label>
                 <input type="text" class="input" id="train-name" name="name" placeholder="Train Name">
             
@@ -46,7 +48,7 @@
                 <input type="text" class="input" id="destination" name="place" placeholder="Destination">
                 
                 <label for="train-time">First Train Time</label>
-                <input type="time" class="input" id="first-train" name="time" placeholder="HH:mm military time">
+                <input type="datetime" class="input" id="first-train" name="time" placeholder="HH:mm military time">
                 
                 <label for="frequency">Frequency</label>
                 <input type="number" class="input" id="frequency" name="frequency" placeholder="minutes">
