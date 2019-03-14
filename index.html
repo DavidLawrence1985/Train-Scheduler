@@ -17,46 +17,54 @@
     <div id="header">
         
     </div>
+    <div id="wrapper" class="grid">
+        <div id="current-schedule" class="grid">
+            <h1>Train Schedule</h1>
+            <table id="train-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Destination</th>
+                        <th>Freq.</th>
+                        <th>Next<br>Train</th>
+                        <th>Wait<br>Time</th>
+                    </tr>
+                </thead>
 
-    <div id="current-schedule" class="grid">
-        <h1>Train Schedule</h1>
-        <table id="train-table">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Destination</th>
-                    <th>Freq.</th>
-                    <th>Next<br>Train</th>
-                    <th>Wait<br>Time</th>
-                </tr>
-            </thead>
+                <tbody id="new-row">
 
-            <tbody id="new-row">
+                </tbody>
+            </table>
+        </div>
 
-            </tbody>
-        </table>
+        <div id="add-train" class="grid">
+                <h2>Add Train</h2>
+
+                <form id="add-new">
+                    <label for="train-name">Train Name</label>
+                    <input type="text" class="input" id="train-name" name="name" placeholder="Train Name">
+                
+                    <label for="destination">Destination</label>
+                    <input type="text" class="input" id="destination" name="place" placeholder="Destination">
+                    
+                    <label for="train-time">First Train Time</label>
+                    <input type="datetime" class="input" id="first-train" name="time" placeholder="HH:mm military time">
+                    
+                    <label for="frequency">Frequency</label>
+                    <input type="number" class="input" id="frequency" name="frequency" placeholder="minutes">
+                
+                
+                    <button type="submit" value="add train" id="submit-train">Add Train</button>
+                </form>
+        </div>
+
     </div>
 
-    <div id="add-train" class="grid">
-            <h2>Add Train</h2>
+    <div id="places">
+        <h3>Available Destinations</h3>
+        <ul id="avail-dest">
 
-            <form id="add-new">
-                <label for="train-name">Train Name</label>
-                <input type="text" class="input" id="train-name" name="name" placeholder="Train Name">
-            
-                <label for="destination">Destination</label>
-                <input type="text" class="input" id="destination" name="place" placeholder="Destination">
-                
-                <label for="train-time">First Train Time</label>
-                <input type="datetime" class="input" id="first-train" name="time" placeholder="HH:mm military time">
-                
-                <label for="frequency">Frequency</label>
-                <input type="number" class="input" id="frequency" name="frequency" placeholder="minutes">
-            
-              
-                <button type="submit" value="add train" id="submit-train">Add Train</button>
-              </form>
-        
+        </ul>
     </div>
     <script src="assets/javascript/app.js"></script>
 </body>

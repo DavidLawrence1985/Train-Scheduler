@@ -3,16 +3,24 @@ font-family: 'Audiowide', cursive;
 font-family: 'Julius Sans One', sans-serif;
 font-family: 'Prosto One', cursive;
 */
+body {
+    background: navy;
+}
+.grid {
+    display: grid;
+}
 #header {
     background: url("../images/train.jpg");
     background-repeat: no-repeat;
     background-size: cover;
-    height: 4rem;
+    height: 5rem;
     width: 100%;
     border-radius: .25rem;
-    margin-bottom: .5rem;
+    margin-bottom: 1.5rem;
 
 }
+
+/*==train scedule area*/
 
 #current-schedule h1 {
     color:black;
@@ -26,8 +34,10 @@ font-family: 'Prosto One', cursive;
     background: #eaeaea;
     height: auto;
     padding: 1rem; 
+    border-radius: .25rem;
     text-align: center;
-    
+    grid-template-columns: 1fr;
+    grid-gap: .75rem;    
 }
 
 #current-schedule table,
@@ -55,17 +65,18 @@ thead {
     background: #f2f2f2;
 }
 
-
-/*#new-row tr:hover{
-    background: navy;
-    color: #dddddd;
-
-}*/
-
 #new-row tr:nth-child(even){
     background: #f2f2f2;
+    color: #777777;
 
 }
+#new-row tr:nth-child(odd){
+    background: #999999;
+    color: #f2f2f2;
+
+}
+
+/*==form area*/
 
 .input {
     width: 100%;
@@ -76,19 +87,6 @@ thead {
     border-radius: 4px;
     box-sizing: border-box;
   }
-
-#submit {
-        margin:.25rem .25rem;
-        padding: .5rem;
-        background: #4F5BD4;
-        color: #eaeaea;
-        display: inline-block;
-        border-radius: .15rem;
-        font-family: 'Kanit', sans-serif;
-        font-size: .75rem;
-        border: none;
-        width:30%;
-}
   
 #add-train{
     margin-top: 1.5rem;
@@ -96,6 +94,9 @@ thead {
     background-color: #f2f2f2;
     padding: 1rem;
     font-family: 'Prosto One', cursive;
+    margin-bottom: 1.5rem;
+    grid-template-columns: 1fr;
+    grid-gap: .75rem; 
     
   }
 
@@ -104,4 +105,49 @@ thead {
       text-align: center;
       margin-bottom: 1rem;
   }
+  #places {
+      display: none;
+  }
 
+  @media (min-width: 700px){
+    
+    #wrapper {
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-gap: .5rem;
+    }
+    
+    #current-schedule {
+        grid-column: 1/3;
+        margin-left:.5rem;
+
+    }
+
+    #add-train {
+        grid-column: 3/4;
+        margin: 0;
+        margin-right:.5rem;
+
+    }
+    /*==added for filling space*/
+    #places {
+        display:block;
+        margin: 1rem .5rem;
+        border-radius: .25rem;
+        background: #f2f2f2;
+        height: auto;
+        font-family: 'Audiowide', cursive;
+        text-align: center;
+        line-height: 1.5rem;
+        
+    }
+
+    #places h3 {
+        font-size: 1.5rem
+    }
+
+    #avail-dest ul{
+        list-style-type: circle; 
+    }
+ 
+
+  }

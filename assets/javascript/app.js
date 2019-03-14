@@ -1,41 +1,35 @@
-/*add to database train  name
-add destination
-first train in 
-frequency 
-calculate when next train will arrive
-diffrent machines view same train times
-*/
 
-var config = {
-    apiKey: "AIzaSyCBZj8fwuG_5ipwcG7h4dXFyNNkx3zXh2w",
-    authDomain: "train-scheduler-c6a78.firebaseapp.com",
-    databaseURL: "https://train-scheduler-c6a78.firebaseio.com",
-    projectId: "train-scheduler-c6a78",
-    storageBucket: "train-scheduler-c6a78.appspot.com",
-    messagingSenderId: "571561797299"
-  };
+  var config = {
+      apiKey: "AIzaSyCBZj8fwuG_5ipwcG7h4dXFyNNkx3zXh2w",
+      authDomain: "train-scheduler-c6a78.firebaseapp.com",
+      databaseURL: "https://train-scheduler-c6a78.firebaseio.com",
+      projectId: "train-scheduler-c6a78",
+      storageBucket: "train-scheduler-c6a78.appspot.com",
+      messagingSenderId: "571561797299"
+    };
 
-  firebase.initializeApp(config);
+    firebase.initializeApp(config);
 
-    var database = firebase.database();
+      var database = firebase.database();
 
-    var trainName = "";
-    var destination = "";
-    var firstTrain; 
-    var frequency = 0;
+      var trainName = "";
+      var destination = "";
+      var firstTrain; 
+      var frequency = 0;
 
-    $("#submit-train").on("click", function(event) {
-      event.preventDefault();
+      $("#submit-train").on("click", function(event) {
+        event.preventDefault();
 
-      
-      trainName = $("#train-name").val().trim();
-      destination = $("#destination").val().trim();
-      firstTrain = $("#first-train").val().trim();
-      frequency = $("#frequency").val().trim();
+        
+        trainName = $("#train-name").val().trim();
+        destination = $("#destination").val().trim();
+        firstTrain = $("#first-train").val().trim();
+        frequency = $("#frequency").val().trim();
 
-      $("#add-new").find(".input").val("");
-      
+        $("#add-new").find(".input").val("");
+        
         database.ref().push({
+            
             trainName:trainName,
             destination:destination,
             firstTrain:firstTrain,
@@ -43,7 +37,7 @@ var config = {
             timestamp:firebase.database.ServerValue.TIMESTAMP
         })
 
-    })
+      })
 
         database.ref().on("child_added", function(snapshot) {
         
@@ -65,20 +59,23 @@ var config = {
             console.log("minutes until" + minutesAway);
             console.log("next arrival" + nextArrival);
 
+          
             $("#new-row").append("<tr> <td>" + info.trainName + 
             "</td><td>" + info.destination +
             "</td><td>" +  info.frequency + 
             "</td><td>" + nextArrival +
-            "</td><td>" + minutesAway + " " + "min" +"</td></tr>");
-
+            "</td><td>" + minutesAway + " " + "min" +"</td></tr>")
+          
+            //fill space on larger version
             
-
-  
+            $("#avail-dest").append("<li>" + info.destination + "</li>");
 
         }, function(errorObject) {
-           
+            
             console.log("Errors handled: " + errorObject.code);
           });
 
-  $("form").find("input[type=text]", "input[type=number").val("");
-      
+    $("form").find("input[type=text]", "input[type=number").val("");
+
+    
+  
